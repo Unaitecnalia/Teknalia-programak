@@ -100,13 +100,19 @@ for i, (archivo_fibra, archivo_galga) in enumerate(zip(archivos_fibra, archivos_
     # Ajustar diseño
     plt.tight_layout()
     
-    plt.show()
+    # plt.show()
 
     # Guardar la imagen con el nombre deseado
-    nombre_fibra = os.path.splitext(archivo_fibra)[0]
-    nombre_galga = os.path.splitext(archivo_galga)[0]
-    nombre_imagen = f"{directorio_imagenes}/{nombre_fibra}_{nombre_galga}.png"
+    directorio_imagenes = "imagenes_6_gráficas"
+    if not os.path.exists(directorio_imagenes):
+        os.makedirs(directorio_imagenes)
+
+    directorio_imagenes = os.path.abspath("imagenes_6_gráficas")
+
+    nombre_imagen = f"{directorio_imagenes}/{archivo_fibra}_{archivo_galga}.png"
+    print(f"Guardando imagen en: {nombre_imagen}")
     plt.savefig(nombre_imagen)
+
 
     # Cerrar la figura actual para evitar la superposición en la siguiente iteración
     plt.close()
